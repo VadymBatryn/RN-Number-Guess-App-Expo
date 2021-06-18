@@ -36,8 +36,8 @@ export default function GameScreen(props) {
 			Alert.alert('Dont lie to me ...', 'You know that was wrong...', [
 				{ text: 'Sorry...', style: 'destructive' },
 			]);
-		}
-		if (direction === 'lower') {
+			return;
+		} else if (direction === 'lower') {
 			currentHigh.current = computerNumber;
 		} else {
 			currentLow.current = computerNumber + 1;
