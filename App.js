@@ -29,7 +29,13 @@ export default function App() {
 			<GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
 		);
 	} else if (roundCount > 0) {
-		content = <GameOverScreen startNewGame={newGameHandler} />;
+		content = (
+			<GameOverScreen
+				userNumber={userNumber}
+				numOfRounds={roundCount}
+				startNewGame={newGameHandler}
+			/>
+		);
 	}
 
 	return (

@@ -26,7 +26,7 @@ export default function GameScreen(props) {
 		if (computerNumber === userNumber) {
 			onGameOver(numOfRounds);
 		}
-	}, [computerNumber, userNumber, onGameOver]);
+	}, [computerNumber]);
 
 	const nextGuessHandler = (direction) => {
 		if (
@@ -37,9 +37,11 @@ export default function GameScreen(props) {
 				{ text: 'Sorry...', style: 'destructive' },
 			]);
 			return;
-		} else if (direction === 'lower') {
+		}
+		if (direction === 'lower') {
 			currentHigh.current = computerNumber;
-		} else {
+		}
+		if (direction == 'greater') {
 			currentLow.current = computerNumber + 1;
 		}
 		const nextNumber = generateRandomNumber(
@@ -47,8 +49,8 @@ export default function GameScreen(props) {
 			currentHigh.current,
 			computerNumber
 		);
-		setComputerNumber(nextNumber);
 		setNumOfRounds((current) => current + 1);
+		setComputerNumber(nextNumber);
 	};
 	return (
 		<View style={styles.container}>

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		borderBottomWidth: 1,
 		borderBottomColor: 'grey',
-		width: 50,
+		width: 60,
 		marginVertical: 20,
 	},
 });
