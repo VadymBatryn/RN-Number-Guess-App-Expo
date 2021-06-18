@@ -15,7 +15,7 @@ import NumberInput from '../components/Input';
 import Card from '../components/Card';
 import NumberContainer from '../components/NumberContainer';
 
-export default function StartGameScreen() {
+export default function StartGameScreen(props) {
 	const [inputNumber, setInputNumber] = useState('');
 	const [isConfirmed, setConfrimTo] = useState(false);
 	const [selectedNumber, setSelectedNumber] = useState();
@@ -54,7 +54,7 @@ export default function StartGameScreen() {
 					<Button
 						title='Start Game'
 						onPress={() => {
-							console.log('hello');
+							props.onStartGame(selectedNumber);
 						}}
 					/>
 				</Card>
