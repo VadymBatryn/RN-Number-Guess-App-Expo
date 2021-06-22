@@ -10,6 +10,7 @@ export default function Card(props) {
 const styles = StyleSheet.create({
 	card: {
 		width: '70%',
+		minWidth: 300,
 		alignItems: 'center',
 		borderRadius: 10,
 		backgroundColor: 'white',

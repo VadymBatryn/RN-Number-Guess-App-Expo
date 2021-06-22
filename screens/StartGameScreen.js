@@ -8,9 +8,9 @@ import {
 	Keyboard,
 	Alert,
 	Pressable,
+	Dimensions,
 } from 'react-native';
 
-import Header from '../components/Header';
 import NumberInput from '../components/Input';
 import Card from '../components/Card';
 import NumberContainer from '../components/NumberContainer';
@@ -51,12 +51,24 @@ export default function StartGameScreen(props) {
 				<Card style={styles.summaryContainer}>
 					<Text style={styles.confirmationText}>You selected</Text>
 					<NumberContainer number={selectedNumber} />
-					<Button
-						title='Start Game'
-						onPress={() => {
-							props.onStartGame(selectedNumber);
-						}}
-					/>
+					<View style={styles.buttonContainer}>
+						<View style={styles.button}>
+							<Button
+								title='RETURN'
+								onPress={resetInputNumber}
+								color='#C70039'
+							/>
+						</View>
+						<View style={styles.button}>
+							<Button
+								title='START'
+								onPress={() => {
+									props.onStartGame(selectedNumber);
+								}}
+								color='#28B463'
+							/>
+						</View>
+					</View>
 				</Card>
 			</View>
 		);
@@ -66,27 +78,38 @@ export default function StartGameScreen(props) {
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.container}>
 				<Text style={styles.title}>Start a New Game!</Text>
-				<Card>
-					<Text style={styles.label}>Enter your number</Text>
-					<NumberInput
-						keyboardType='numeric'
-						maxLength={2}
-						style={styles.label}
-						value={inputNumber}
-						onChangeText={changeInputNumber}
-						autoCapitalize='none'
-						autoCorrect={false}
-					/>
-					<View style={styles.buttonContainer}>
-						<Button title='RESET' color='#C70039' onPress={resetInputNumber} />
-						<Button
-							title='SUBMIT'
-							color='#28B463'
-							onPress={confirmInputNumber}
+				{isConfirmed ? (
+					confirmedOutput
+				) : (
+					<Card>
+						<Text style={styles.label}>Enter your number</Text>
+						<NumberInput
+							keyboardType='numeric'
+							maxLength={2}
+							style={styles.label}
+							value={inputNumber}
+							onChangeText={changeInputNumber}
+							autoCapitalize='none'
+							autoCorrect={false}
 						/>
-					</View>
-				</Card>
-				{confirmedOutput}
+						<View style={styles.buttonContainer}>
+							<View style={styles.button}>
+								<Button
+									title='RESET'
+									color='#C70039'
+									onPress={resetInputNumber}
+								/>
+							</View>
+							<View style={styles.button}>
+								<Button
+									title='SUBMIT'
+									color='#28B463'
+									onPress={confirmInputNumber}
+								/>
+							</View>
+						</View>
+					</Card>
+				)}
 			</View>
 		</TouchableWithoutFeedback>
 	);
@@ -103,7 +126,7 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 	},
 	label: {
-		paddingVertical: 25,
+		paddingVertical: Dimensions.get('window').height / 40,
 		textAlign: 'center',
 		fontSize: 20,
 	},
@@ -114,15 +137,16 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-evenly',
 		paddingVertical: 25,
 	},
+	button: {
+		width: Dimensions.get('window').width / 4,
+	},
 
 	//--- start game card ---//
 
 	summaryContainer: {
-		padding: 25,
-		marginTop: 20,
-		minWidth: '55%',
+		paddingTop: Dimensions.get('window').height / 40,
 	},
 	confirmationText: {
-		fontSize: 18,
+		fontSize: 20,
 	},
 });

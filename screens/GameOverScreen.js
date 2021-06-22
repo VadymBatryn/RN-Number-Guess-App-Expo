@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	Button,
+	Image,
+	Dimensions,
+} from 'react-native';
 
 export default function GameOverScreen(props) {
 	return (
@@ -10,10 +17,12 @@ export default function GameOverScreen(props) {
 			</View>
 			<Text style={styles.description}>
 				Your phone needed{' '}
-				<Text style={styles.highlight}>{props.numOfRounds}</Text> to guess your
+				<Text style={styles.highlight}>{props.numOfRounds}</Text> to guess the
 				number <Text style={styles.highlight}>{props.userNumber}</Text>
 			</Text>
-			<Button title='Restart' onPress={props.startNewGame} />
+			<View style={styles.button}>
+				<Button title='Restart' onPress={props.startNewGame} />
+			</View>
 		</View>
 	);
 }
@@ -25,7 +34,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	title: {
-		fontSize: 24,
+		fontSize: Dimensions.get('window').height < 400 ? 18 : 24,
 		fontWeight: '800',
 		color: 'coral',
 	},
@@ -34,17 +43,20 @@ const styles = StyleSheet.create({
 		fontWeight: '700',
 	},
 	description: {
-		fontSize: 20,
-		paddingHorizontal: 20,
+		fontSize: Dimensions.get('window').height < 400 ? 16 : 20,
+		paddingHorizontal: Dimensions.get('window').height / 40,
 		textAlign: 'center',
 	},
+	button: {
+		marginVertical: Dimensions.get('window').height / 40,
+	},
 	gameOverImage: {
-		width: 300,
-		height: 300,
-		borderRadius: 150,
+		width: Dimensions.get('window').width * 0.7,
+		height: Dimensions.get('window').width * 0.7,
+		borderRadius: (Dimensions.get('window').width * 0.7) / 2,
 		overflow: 'hidden',
 		borderWidth: 3,
-		marginVertical: 20,
+		marginVertical: Dimensions.get('window').height / 40,
 	},
 	image: {
 		width: '100%',
