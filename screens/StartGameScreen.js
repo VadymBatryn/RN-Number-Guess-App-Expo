@@ -7,7 +7,6 @@ import {
 	TouchableWithoutFeedback,
 	Keyboard,
 	Alert,
-	Pressable,
 	Dimensions,
 } from 'react-native';
 

@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-evenly',
 		paddingVertical: 20,
+		marginVertical: 40,
 		width: 300,
 		maxWidth: '80%',
 	},
